@@ -1,0 +1,7 @@
+mode: ContinuousDeployment
+legacy-semver-padding: 0
+branches:
+  features?[/-]:
+    mode: ContinuousDeployment
+  integration[/-]:
+    mode: ContinuousDeployment
