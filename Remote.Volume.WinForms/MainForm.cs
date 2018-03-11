@@ -62,6 +62,17 @@ namespace Remote.Volume.WinForms
 
 		private void tbVolume_ValueChanged(object sender, System.EventArgs e)
 		{
+			var difference = tbVolume.Value % 5;
+
+			if (difference >= 3)
+			{
+				tbVolume.Value += 5 - difference;
+			}
+			else
+			{
+				tbVolume.Value -= difference;
+			}
+
 			txtVolume.Text = tbVolume.Value.ToString();
 		}
 
