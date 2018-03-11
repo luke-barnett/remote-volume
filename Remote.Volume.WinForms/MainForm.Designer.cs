@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.btnMute = new System.Windows.Forms.Button();
 			this.btnUnmute = new System.Windows.Forms.Button();
 			this.tbVolume = new System.Windows.Forms.TrackBar();
@@ -108,6 +109,7 @@
 			this.Controls.Add(this.tbVolume);
 			this.Controls.Add(this.btnUnmute);
 			this.Controls.Add(this.btnMute);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "MainForm";
 			this.Text = "Remote Volume";
 			this.Load += new System.EventHandler(this.MainForm_Load);
