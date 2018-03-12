@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.WindowsServices;
 using Microsoft.Extensions.Configuration;
+using NLog.Web;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace Remote.Volume
 
 			var host = WebHost.CreateDefaultBuilder(args)
 				.UseContentRoot(pathToContentRoot)
+				.UseNLog()
 				.UseConfiguration(configuration)
 				.UseStartup<Startup>()
 				.Build();
