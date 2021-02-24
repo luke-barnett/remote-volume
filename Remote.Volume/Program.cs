@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.WindowsServices;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using NLog.Web;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 
 namespace Remote.Volume
 {
@@ -13,35 +8,16 @@ namespace Remote.Volume
 	{
 		public static void Main(string[] args)
 		{
-			bool isService = true;
-			if (Debugger.IsAttached || args.Contains("--console"))
-			{
-				isService = false;
-			}
-
-			var pathToContentRoot = isService ?
-					Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName) :
-					Directory.GetCurrentDirectory();
-
-			var configuration = new ConfigurationBuilder()
-									.AddCommandLine(args)
-									.Build();
-
-			var host = WebHost.CreateDefaultBuilder(args)
-				.UseContentRoot(pathToContentRoot)
-				.UseNLog()
-				.UseConfiguration(configuration)
-				.UseStartup<Startup>()
-				.Build();
-
-			if (isService)
-			{
-				host.RunAsService();
-			}
-			else
-			{
-				host.Run();
-			}
+			CreateHostBuilder(args).Build().Run();
 		}
+
+		public static IHostBuilder CreateHostBuilder(string[] args) =>
+			Host.CreateDefaultBuilder(args)
+				.UseNLog()
+				.ConfigureWebHostDefaults(webBuilder =>
+				{
+					webBuilder.UseStartup<Startup>();
+				})
+				.UseWindowsService();
 	}
 }

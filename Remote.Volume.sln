@@ -1,13 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Remote.Volume", "Remote.Volume\Remote.Volume.csproj", "{EC064BBD-B6B9-4670-9A5B-E7A57EC0B3EB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remote.Volume.WinForms", "Remote.Volume.WinForms\Remote.Volume.WinForms.csproj", "{94E786B1-D07A-4C03-940E-4756F9F91FBB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Remote.Volume.Common", "Remote.Volume.Common\Remote.Volume.Common.csproj", "{40A943A7-4B7A-4692-BE8C-CADEFB44476E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Remote.Volume.Common", "Remote.Volume.Common\Remote.Volume.Common.csproj", "{40A943A7-4B7A-4692-BE8C-CADEFB44476E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Remote.Volume", "Remote.Volume\Remote.Volume.csproj", "{20668632-1425-4E68-A034-D714E025A8A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{072D93A9-17BC-4C06-8875-95F2EBE742FE}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		GitVersion.yml = GitVersion.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC064BBD-B6B9-4670-9A5B-E7A57EC0B3EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC064BBD-B6B9-4670-9A5B-E7A57EC0B3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC064BBD-B6B9-4670-9A5B-E7A57EC0B3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC064BBD-B6B9-4670-9A5B-E7A57EC0B3EB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{94E786B1-D07A-4C03-940E-4756F9F91FBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{94E786B1-D07A-4C03-940E-4756F9F91FBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94E786B1-D07A-4C03-940E-4756F9F91FBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +31,10 @@ Global
 		{40A943A7-4B7A-4692-BE8C-CADEFB44476E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40A943A7-4B7A-4692-BE8C-CADEFB44476E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40A943A7-4B7A-4692-BE8C-CADEFB44476E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20668632-1425-4E68-A034-D714E025A8A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20668632-1425-4E68-A034-D714E025A8A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20668632-1425-4E68-A034-D714E025A8A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20668632-1425-4E68-A034-D714E025A8A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

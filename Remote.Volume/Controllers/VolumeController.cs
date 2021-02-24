@@ -1,17 +1,16 @@
-﻿using AudioSwitcher.AudioApi;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
+using NAudio.CoreAudioApi;
 
 namespace Remote.Volume.Controllers
 {
 	[Produces("application/json")]
 	public class VolumeController : Controller
 	{
-		private readonly IAudioController _audioController;
+		private readonly MMDevice _defaultDevice;
 
-		public VolumeController(IAudioController audioController)
+		public VolumeController()
 		{
-			_audioController = audioController;
+			_defaultDevice = new MMDeviceEnumerator().GetDefaultAudioEndpoint(DataFlow.Render, Role.Multimedia);
 		}
 
 		/// <summary>
@@ -21,9 +20,9 @@ namespace Remote.Volume.Controllers
 		[HttpPost]
 		[Route("/api/volume/mute")]
 		[ProducesResponseType(200)]
-		public async Task<IActionResult> Mute()
+		public IActionResult Mute()
 		{
-			await _audioController.DefaultPlaybackDevice.SetMuteAsync(true);
+			_defaultDevice.AudioEndpointVolume.Mute = true;
 			return Ok();
 		}
 
@@ -34,9 +33,9 @@ namespace Remote.Volume.Controllers
 		[HttpPost]
 		[Route("/api/volume/unmute")]
 		[ProducesResponseType(200)]
-		public async Task<IActionResult> Unmute()
+		public IActionResult Unmute()
 		{
-			await _audioController.DefaultPlaybackDevice.SetMuteAsync(false);
+			_defaultDevice.AudioEndpointVolume.Mute = false;
 			return Ok();
 		}
 
@@ -48,9 +47,9 @@ namespace Remote.Volume.Controllers
 		[HttpGet]
 		[Route("/api/volume")]
 		[ProducesResponseType(200)]
-		public async Task<double> Volume()
+		public double Volume()
 		{
-			return await _audioController.DefaultPlaybackDevice.GetVolumeAsync();
+			return _defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar * 100;
 		}
 
 		/// <summary>
@@ -63,14 +62,14 @@ namespace Remote.Volume.Controllers
 		[Route("/api/volume")]
 		[ProducesResponseType(200)]
 		[ProducesResponseType(400)]
-		public async Task<IActionResult> Volume(double volume)
+		public IActionResult Volume(double volume)
 		{
 			if (volume < 0 || volume > 100)
 			{
 				return BadRequest("Volume must be between 0 and 100");
 			}
 
-			await _audioController.DefaultPlaybackDevice.SetVolumeAsync(volume);
+			_defaultDevice.AudioEndpointVolume.MasterVolumeLevelScalar = (float)volume / 100f;
 			return Ok();
 		}
 	}
